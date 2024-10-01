@@ -1,4 +1,4 @@
-package ge.sopovardidze.gutenberg_books.presentation
+package ge.sopovardidze.gutenberg_books.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-
-typealias ViewBindingFactory<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+import ge.sopovardidze.gutenberg_books.presentation.utils.ViewBindingFactory
 
 abstract class BaseFragment<ViewBindingType : ViewBinding> : Fragment() {
 

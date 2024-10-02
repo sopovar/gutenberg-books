@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import ge.sopovardidze.gutenberg_books.data.local.BookEntity
 import ge.sopovardidze.gutenberg_books.databinding.ItemBookBinding
+import ge.sopovardidze.gutenberg_books.domain.model.Book
 import ge.sopovardidze.gutenberg_books.presentation.utils.click
 
-class BookListAdapter(private val onBookClick: (BookEntity) -> Unit) :
-    PagingDataAdapter<BookEntity, BookListAdapter.BookListViewHolder>(BookComparator) {
+class BookListAdapter(private val onBookClick: (Book) -> Unit) :
+    PagingDataAdapter<Book, BookListAdapter.BookListViewHolder>(BookComparator) {
 
     override fun onBindViewHolder(holder: BookListViewHolder, position: Int) {
         val item = getItem(position)
@@ -30,9 +30,9 @@ class BookListAdapter(private val onBookClick: (BookEntity) -> Unit) :
     inner class BookListViewHolder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(book: BookEntity) {
+        fun bind(book: Book) {
             with(binding) {
-                tvTitle.text = book.title
+                tvTitle.text = "Title: ${book.title} \nAuthor: ${book.authors.firstOrNull()?.name}"
                 root.click {
                     onBookClick.invoke(book)
                 }
@@ -40,12 +40,12 @@ class BookListAdapter(private val onBookClick: (BookEntity) -> Unit) :
         }
     }
 
-    object BookComparator : DiffUtil.ItemCallback<BookEntity>() {
-        override fun areItemsTheSame(oldItem: BookEntity, newItem: BookEntity): Boolean {
+    object BookComparator : DiffUtil.ItemCallback<Book>() {
+        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: BookEntity, newItem: BookEntity): Boolean {
+        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
             return oldItem == newItem
         }
     }

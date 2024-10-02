@@ -2,7 +2,7 @@ package ge.sopovardidze.gutenberg_books.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Formats(
+data class FormatsDto(
     @SerializedName("text/html")
     val html: String? = null,
 

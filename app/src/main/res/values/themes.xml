@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.Gutenbergbooks" parent="Base.Theme.Gutenbergbooks" />
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

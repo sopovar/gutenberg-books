@@ -19,6 +19,12 @@
         android:id="@+id/bookDetailFragment"
         android:name="ge.sopovardidze.gutenberg_books.presentation.bookDetails.BookDetailFragment"
         android:label="fragment_book_detail"
-        tools:layout="@layout/fragment_book_detail" />
+        tools:layout="@layout/fragment_book_detail"
+        app:popUpToInclusive="false">
+
+        <argument
+            android:name="book"
+            app:argType="ge.sopovardidze.gutenberg_books.domain.model.Book"/>
+    </fragment>
 
 </navigation>

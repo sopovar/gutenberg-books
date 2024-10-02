@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ge.sopovardidze.gutenberg_books.R
 import ge.sopovardidze.gutenberg_books.databinding.ItemBookBinding
 import ge.sopovardidze.gutenberg_books.domain.model.Book
 import ge.sopovardidze.gutenberg_books.presentation.utils.click
@@ -32,7 +34,13 @@ class BookListAdapter(private val onBookClick: (Book) -> Unit) :
 
         fun bind(book: Book) {
             with(binding) {
-                tvTitle.text = "Title: ${book.title} \nAuthor: ${book.authors.firstOrNull()?.name}"
+                tvTitle.text = book.title
+                tvBookAuthor.text = book.authors.firstOrNull()?.name
+                Glide
+                    .with(root.context)
+                    .load(book.image)
+                    .centerCrop()
+                    .into(ivBookCover)
                 root.click {
                     onBookClick.invoke(book)
                 }

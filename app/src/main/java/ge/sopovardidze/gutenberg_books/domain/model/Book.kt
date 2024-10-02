@@ -1,5 +1,9 @@
 package ge.sopovardidze.gutenberg_books.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Book(
     val id: Int,
     val title: String? = "",
@@ -8,4 +12,4 @@ data class Book(
     val bookshelves: List<String> = emptyList(),
     val image: String?,
     val downloadedCount: Long?
-)
+): Parcelable

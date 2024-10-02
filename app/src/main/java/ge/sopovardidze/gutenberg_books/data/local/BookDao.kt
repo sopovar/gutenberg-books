@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookDao {
@@ -16,4 +17,7 @@ interface BookDao {
 
     @Query("DELETE FROM BookEntity")
     suspend fun clearAll()
+
+    @Query("SELECT * FROM bookentity WHERE id=:id")
+    fun getBookById(id: Int): Flow<BookEntity>
 }

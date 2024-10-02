@@ -29,7 +29,7 @@ class BookListFragment : BaseFragment<FragmentBookListBinding>() {
     private val adapter = BookListAdapter(
         onBookClick = {
             Log.e("123123", "click = ${it.title} - ${it.id}")
-            val action = BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(it)
+            val action = BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(it, it.id)
             findNavController().navigate(action)
         }
     )

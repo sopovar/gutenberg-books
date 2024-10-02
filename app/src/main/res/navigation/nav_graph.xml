@@ -25,6 +25,9 @@
         <argument
             android:name="book"
             app:argType="ge.sopovardidze.gutenberg_books.domain.model.Book"/>
+        <argument
+            android:name="bookId"
+            app:argType="integer"/>
     </fragment>
 
 </navigation>

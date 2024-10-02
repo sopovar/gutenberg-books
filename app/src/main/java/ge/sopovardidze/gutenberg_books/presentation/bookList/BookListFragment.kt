@@ -6,7 +6,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.paging.PositionalDataSource
 import dagger.hilt.android.AndroidEntryPoint
 import ge.sopovardidze.gutenberg_books.R
 import ge.sopovardidze.gutenberg_books.databinding.FragmentBookListBinding
@@ -41,7 +43,7 @@ class BookListFragment : BaseFragment<FragmentBookListBinding>() {
     private fun getBooks() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getPagingBooks.collectLatest { books ->
+                viewModel.pagingDataFlow.collectLatest { books ->
                     adapter.submitData(lifecycle, books)
                 }
             }
@@ -51,16 +53,12 @@ class BookListFragment : BaseFragment<FragmentBookListBinding>() {
     private fun listenerAdapter() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter.addLoadStateListener { loadState ->
-                    if (loadState.source.append is LoadState.Loading || loadState.source.refresh is LoadState.Loading) {
-                        binding.progressBar.visible()
-                    } else {
-                        binding.progressBar.gone()
-                    }
-//                    val errorState = loadState.getError()
-//                    errorState?.showError {
-//                       // TODO()
-//                    }
+                adapter.loadStateFlow.collect { loadState ->
+                   if(loadState.mediator?.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
+                       binding.progressBar.visible()
+                   } else {
+                       binding.progressBar.gone()
+                   }
                 }
             }
         }

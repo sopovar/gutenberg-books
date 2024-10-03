@@ -23,11 +23,11 @@
         app:popUpToInclusive="false">
 
         <argument
-            android:name="book"
-            app:argType="ge.sopovardidze.gutenberg_books.domain.model.Book"/>
-        <argument
             android:name="bookId"
             app:argType="integer"/>
+
+        <deepLink
+            app:uri="https://www.example.com/book/{bookId}" />
     </fragment>
 
 </navigation>

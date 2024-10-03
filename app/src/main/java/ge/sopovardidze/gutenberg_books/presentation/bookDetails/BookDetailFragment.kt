@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import ge.sopovardidze.gutenberg_books.databinding.FragmentBookDetailBinding
 import ge.sopovardidze.gutenberg_books.presentation.base.BaseFragment
+import ge.sopovardidze.gutenberg_books.presentation.utils.ARG_BOOK_ID
 import ge.sopovardidze.gutenberg_books.presentation.utils.ViewBindingFactory
 import ge.sopovardidze.gutenberg_books.presentation.utils.click
 import kotlinx.coroutines.flow.collectLatest
@@ -23,7 +24,7 @@ class BookDetailFragment : BaseFragment<FragmentBookDetailBinding>() {
     private val viewModel: BookDetailsViewModel by viewModels()
 
     override fun setUpUi() {
-        val bookId = arguments?.getInt("bookId")
+        val bookId = arguments?.getInt(ARG_BOOK_ID)
         Log.e("123123", "bookId = ${bookId}")
         if (bookId != null) {
             viewModel.getBookById(bookId)
@@ -53,6 +54,5 @@ class BookDetailFragment : BaseFragment<FragmentBookDetailBinding>() {
                 }
             }
         }
-//        val book = BookDetailFragmentArgs.fromBundle(requireArguments()).book
     }
 }

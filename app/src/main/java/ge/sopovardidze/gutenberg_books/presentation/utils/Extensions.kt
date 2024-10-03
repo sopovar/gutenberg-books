@@ -13,14 +13,6 @@ fun View.gone() {
     visibility = View.GONE
 }
 
-fun View.invisible() {
-    visibility = View.INVISIBLE
-}
-
-fun ImageView.changeDrawableColor(color: Int) {
-    setColorFilter(resources.getColor(color))
-}
-
 fun View.click(click: () -> Unit) {
     setOnClickListener { click() }
 }

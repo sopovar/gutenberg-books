@@ -1,6 +1,7 @@
 package ge.sopovardidze.gutenberg_books.presentation.bookList
 
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,8 @@ class BookListFragment : BaseFragment<FragmentBookListBinding>() {
 
     private val adapter = BookListAdapter(
         onBookClick = {
-            val action = BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(it.id)
+            val action =
+                BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(it.id)
             findNavController().navigate(action)
         }
     )
@@ -55,11 +57,22 @@ class BookListFragment : BaseFragment<FragmentBookListBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 adapter.loadStateFlow.collect { loadState ->
-                   if(loadState.mediator?.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
-                       binding.progressBar.visible()
-                   } else {
-                       binding.progressBar.gone()
-                   }
+                    if (loadState.mediator?.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
+                        binding.progressBar.visible()
+                    } else {
+                        binding.progressBar.gone()
+                    }
+                    val errorState = loadState.source.append as? LoadState.Error
+                        ?: loadState.source.prepend as? LoadState.Error
+                        ?: loadState.append as? LoadState.Error
+                        ?: loadState.prepend as? LoadState.Error
+                    errorState?.let {
+                        Toast.makeText(
+                            requireActivity(),
+                            "${it.error}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         }

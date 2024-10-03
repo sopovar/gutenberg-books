@@ -7,15 +7,29 @@
     android:orientation="vertical"
     tools:context=".presentation.bookList.BookListFragment">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBookListTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bookTitle"
+        android:textSize="@dimen/font_size_18"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin6x"
+        android:layout_marginHorizontal="@dimen/margin2x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBookList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin1x2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBookListTitle"
         tools:listitem="@layout/item_book" />
 
     <ProgressBar

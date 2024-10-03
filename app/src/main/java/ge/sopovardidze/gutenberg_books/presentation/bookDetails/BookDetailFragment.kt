@@ -6,13 +6,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import ge.sopovardidze.gutenberg_books.databinding.FragmentBookDetailBinding
 import ge.sopovardidze.gutenberg_books.presentation.base.BaseFragment
+import ge.sopovardidze.gutenberg_books.presentation.bookDetails.adapter.BookDetailAdapter
 import ge.sopovardidze.gutenberg_books.presentation.utils.ARG_BOOK_ID
 import ge.sopovardidze.gutenberg_books.presentation.utils.ViewBindingFactory
-import ge.sopovardidze.gutenberg_books.presentation.utils.click
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -35,20 +34,11 @@ class BookDetailFragment : BaseFragment<FragmentBookDetailBinding>() {
                 viewModel.bookDetails.collectLatest { book ->
                     with(binding) {
                         book?.let {
-                            val author = book.authors.first()
-                            tvBookDetailsAuthor.text = author?.name
-                            tvBookDetailsAuthorYears.text =
-                                "(${author?.birthYear}-${author?.deathYear})"
-                            tvBookDetailsTitle.text = book.title
-                            Glide
-                                .with(requireContext())
-                                .load(book.image)
-                                .centerCrop()
-                                .into(ivBookDetailsCover)
-                            tvBookDetailsDownloadCount.text = "${book.downloadedCount}"
-                        }
-                        btnBookDetailsBack.click {
-                            findNavController().popBackStack()
+                            val sampleAdapter = BookDetailAdapter(book) {
+                                findNavController().popBackStack()
+                            }
+                            rvBookDetail.adapter = sampleAdapter
+                            rvBookDetail.isNestedScrollingEnabled = false
                         }
                     }
                 }

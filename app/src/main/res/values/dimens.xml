@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  font sizes  -->
+    <dimen name="font_size_8">8sp</dimen>
+    <dimen name="font_size_9">9sp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+
+    <!--  radius  -->
+    <dimen name="corner_radius_24">24dp</dimen>
+
+    <!-- stroke -->
+    <dimen name="stroke_width_1">1dp</dimen>
+
+    <!--  margin  -->
+    <dimen name="margin025x">2dp</dimen>
+    <dimen name="margin05x">4dp</dimen>
+    <dimen name="margin075x">6dp</dimen>
+    <dimen name="margin1x">8dp</dimen>
+    <dimen name="margin1x2">12dp</dimen>
+    <dimen name="margin2x">16dp</dimen>
+    <dimen name="margin2x2">20dp</dimen>
+    <dimen name="margin3x">24dp</dimen>
+    <dimen name="margin4x">32dp</dimen>
+    <dimen name="margin5x">40dp</dimen>
+    <dimen name="margin6x">48dp</dimen>
+    <dimen name="margin6x2">52dp</dimen>
+    <dimen name="margin6x10">80dp</dimen>
+    <dimen name="margin6x15">120dp</dimen>
+</resources>

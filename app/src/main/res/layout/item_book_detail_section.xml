@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin05x"
+    android:id="@+id/tvItemBookDetailSection"
+    android:background="@drawable/shape_rounded"
+    android:gravity="center"
+    android:padding="@dimen/margin1x2"
+    android:textColor="@color/purple"
+    android:textSize="@dimen/font_size_16"
+    tools:text="Horror tales" />

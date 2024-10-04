@@ -19,5 +19,5 @@ interface BookDao {
     suspend fun clearAll()
 
     @Query("SELECT * FROM bookentity WHERE id=:id")
-    fun getBookById(id: Int): Flow<BookEntity>
+    suspend fun getBookById(id: Int): BookEntity?
 }
